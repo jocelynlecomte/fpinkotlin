@@ -9,6 +9,8 @@ fun triple(n: Int) = n * 3
 
 fun <T, U, V> compose(f: (U) -> V, g: (T) -> U): (T) -> V = { f(g(it)) }
 
-val add: (Int) -> (Int) -> Int = { a -> { b -> a + b} }
+typealias IntBinOp = (Int) -> (Int) -> Int
 
-val compose = null // Define a value function composing two (Int) -> Int functions
+val add: IntBinOp = { a -> { b -> a + b} }
+
+val compose = { f: (Int) -> Int -> { g: (Int) -> Int -> { n: Int -> f(g(n)) } } } // Define a value function composing two (Int) -> Int functions
